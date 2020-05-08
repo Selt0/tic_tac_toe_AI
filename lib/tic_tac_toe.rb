@@ -113,7 +113,10 @@ class TicTacToe
 
   def show
     # not very pretty printing!
-    self.board.rows.each { |row| p row }
+    puts "  #{(0..2).to_a.join(' ')}"
+    self.board.rows.each_with_index do |row, i|
+       puts "#{i} #{row.join(' ')}"
+    end
   end
 
   private
@@ -149,7 +152,8 @@ class HumanPlayer
   def move(game, mark)
     game.show
     while true
-      puts "#{@name}: please select your space"
+      puts
+      puts "#{@name}: please select your space (e.g, 0,0)"
       row, col = gets.chomp.split(",").map(&:to_i)
       if HumanPlayer.valid_coord?(row, col)
         return [row, col]
